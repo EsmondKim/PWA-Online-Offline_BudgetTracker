@@ -87,12 +87,17 @@ self.addEventListener("fetch", function (evt) {
   // see https://developers.google.com/web/fundamentals/instant-and-offline/offline-cookbook#cache-falling-back-to-network
 
   evt.respondWith(
-    caches
-      .match(evt.request)
-      .then(function (response) {
-        console.log("Hit evt.respondWith");
+    caches.open(CACHE_NAME).then((cache) => {
+      return cache.match(evt.request).then((response) => {
         return response || fetch(evt.request);
-      })
-      .catch(() => console.log("Hit the .catch."))
+      });
+    })
+
+    // .match(evt.request)
+    // .then(function (response) {
+    //   console.log("Hit evt.respondWith");
+    //   return response || fetch(evt.request);
+    // })
+    // .catch(() => console.log("Hit the .catch."))
   );
 });
