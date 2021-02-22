@@ -89,6 +89,8 @@ self.addEventListener("fetch", function (evt) {
   evt.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(evt.request).then((response) => {
+        console.log("Hit evt.request in respondWith");
+        console.log(response);
         return response || fetch(evt.request);
       });
     })

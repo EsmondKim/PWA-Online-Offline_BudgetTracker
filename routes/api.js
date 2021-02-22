@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const Transactions = require("../models/transaction.js");
-const Transaction = require("../models/transaction.js");
 
 router.post("/api/transaction", ({ body }, res) => {
   Transactions.create(body)
