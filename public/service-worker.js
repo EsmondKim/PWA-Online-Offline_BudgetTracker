@@ -12,18 +12,6 @@ const FILES_TO_CACHE = [
   "/icons/icon-512x512.png",
 ];
 
-// install
-// self.addEventListener("install", function (evt) {
-//   evt.waitUntil(
-//     caches.open(CACHE_NAME).then((cache) => {
-//       console.log("Your files were pre-cached successfully!");
-//       return cache.addAll(FILES_TO_CACHE);
-//     })
-//   );
-
-//   self.skipWaiting();
-// });
-
 self.addEventListener("install", function (evt) {
   evt.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -35,34 +23,13 @@ self.addEventListener("install", function (evt) {
   self.skipWaiting();
 });
 
-// self.addEventListener("activate", function (evt) {
-//   console.log("hit activate");
-//   evt.waitUntil(
-//     caches.keys().then((keyList) => {
-//       return Promise.all(
-//         keyList.map((key) => {
-//           if (key !== CACHE_NAME && key !== DATA_CACHE_NAME) {
-//             console.log("Removing old cache data", key);
-//             return caches.delete(key);
-//           }
-//         })
-//       );
-//     })
-//   );
-
-//   self.clients.claim();
-// });
-
-// fetch
 self.addEventListener("fetch", function (evt) {
   // cache successful requests to the API
-  //console.log("hit the fetch function");
   if (evt.request.url.includes("/api/transaction")) {
     evt.respondWith(
       caches
         .open(DATA_CACHE_NAME)
         .then((cache) => {
-          //console.log("inside the .then of the respondWith()");
           return fetch(evt.request)
             .then((response) => {
               // If the response was good, clone it and store it in the cache.
@@ -89,17 +56,8 @@ self.addEventListener("fetch", function (evt) {
   evt.respondWith(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.match(evt.request).then((response) => {
-        //console.log("Hit evt.request in respondWith");
-        //console.log(response);
         return response || fetch(evt.request);
       });
     })
-
-    // .match(evt.request)
-    // .then(function (response) {
-    //   console.log("Hit evt.respondWith");
-    //   return response || fetch(evt.request);
-    // })
-    // .catch(() => console.log("Hit the .catch."))
   );
 });
