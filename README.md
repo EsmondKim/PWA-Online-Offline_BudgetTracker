@@ -13,7 +13,7 @@
 
 ## Description
 
-This app is a budget tracker. The app saves your transactions even if you're offline! If you're offline, the app will save your transactions to a noSql IndexedDB in your web browser. When you go back online, the IndexedDB transactions will be picked up and added to the MongoDB database that the app is connected to when the app is used online. This is a progressive web app that utilizes cache storage to facilitate a quickly loading user experience.
+This app is a budget tracker. The app saves your transactions even if you're offline! If you're offline, the app will save your transactions to a noSql IndexedDB database in your web browser. When you go back online, the IndexedDB transactions will be picked up and added to the MongoDB database that the app is connected to when the app is used online. This is a progressive web app that utilizes cache storage to facilitate a quickly loading user experience.
 
 So, go ahead and put your transactions into this app, even if you're jetsetting and in the air with your phone or laptop in airplane mode. Those transactions will go to the MongoDB database when you've arrived at your next destination with access to WiFi!
 
@@ -24,6 +24,8 @@ SO THAT my account balance is accurate when I am traveling
 
 Sceenshots
 ![Here is a screenshot of the PWA Budget Tracker.](/public/images/screenshot.jpg)
+<br>
+[Here is a link to the deployed page.](https://hidden-tundra-36868.herokuapp.com/)<br>
 
 ## Installation
 
